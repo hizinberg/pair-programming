@@ -49,9 +49,9 @@ View all rooms currently stored in memory or database.
 ```
 pair-programming-backend/
 │── app/
+│   ├── __init__.py
 │   ├── routers/
 │   ├── services/
-│   ├── utils/
 │   ├── db.py
 │   ├── logger.py
 │   ├── main.py
@@ -109,7 +109,7 @@ Each router corresponds to a logical module.
 - Used to inspect all active rooms  
 - Intended for debugging or admin inspection
 
-### **ws.py** (if present — depending on structure)
+### **ws_router.py** 
 - Defines the WebSocket route  
 - Manages:
   - Client connection/disconnection  
@@ -132,20 +132,13 @@ Responsibilities:
 - Store state in memory or Postgres (depending on configuration)  
 - Provide helpers for WebSocket broadcasting
 
-### **autocomplete_service.py**
+### **ast_name.py**
 - Implements AST-based suggestion engine  
 - Parses code using `ast` module  
-- Suggests completions based on structure, keywords, context  
-- Returns simple, deterministic suggestion lists
+- Returns "globals", "functions", "classes", "imports", "params", "locals"
 
-### **execution_service.py**
-- Safely executes Python code  
-- Captures stdout and stderr  
-- Time-limits execution  
-- Prevents access to OS-level commands  
-- Isolated environment logic
 
-### **websocket_service.py**
+### **connection_manager.py**
 - Manages active WebSocket connections  
 - Stores per-room clients  
 - Handles:
@@ -156,23 +149,6 @@ Responsibilities:
   - Clean disconnections
 
 ---
-
-# 🧰 app/utils/
-
-Utility helpers used across services.
-
-### **code_utils.py** (if present)
-- Helper functions for AST parsing  
-- String manipulation  
-- Preprocessing code for autocomplete
-
-### **execution_safety.py**
-- Limits builtins  
-- Configures sandbox environment  
-- Prevents access to dangerous modules
-
-### **misc utilities**
-- Common helpers shared across services
 
 ---
 
@@ -275,7 +251,6 @@ Backend-specific instructions:
 | **main.py** | App entry, mounts routers, websocket endpoint |
 | **routers/** | Defines REST & WS endpoints |
 | **services/** | Core business logic (rooms, autocomplete, execution, ws) |
-| **utils/** | Helpers for AST, execution safety, misc tools |
 | **db.py** | Database/in-memory room store |
 | **models.py** | Internal data models |
 | **schemas.py** | Pydantic schemas |
