@@ -46,14 +46,8 @@ Each repository includes its own setup instructions and independent READMEs.
 - Not a real AI model, but more advanced than the minimum requirements
 
 ### ✔ Code Execution Engine
-- Executes Python code in a safe sandboxed backend environment
+- Executes Python using exec ( WARNING this is unsafe )
 - Displays output/errors in real time to the frontend
-
-### ✔ Web-Friendly UI
-- Editor built using **Monaco Editor**
-- Written in **JavaScript**, not TypeScript
-- Uses **React Router** for navigation
-- **No Redux** — state is handled using Context + internal hooks
 
 ---
 
@@ -73,8 +67,7 @@ Contains:
 - WebSocket client handler  
 - Autocomplete UI  
 - Code execution output panel  
-- Room creation/join screens  
-- No Redux — implementation uses custom state handling  
+- Room creation/join screens   
 
 ### 🔹 Backend Repository  
 **FastAPI, Python, WebSockets, AST utilities**
@@ -88,34 +81,6 @@ Contains:
 - In-memory + Postgres-backed room state
 - Code execution sandbox
 - AST suggestion module
-
----
-
-## 📄 Additional Documentation in This Repository
-
-You may include these two files in this parent repo:
-
-### `frontend-logic.md`
-Detailed explanation of:
-
-- WebSocket events and listeners  
-- Internal editor state flow  
-- Debouncing model for autocomplete  
-- Code execution request flow  
-- Routing structure  
-- Why Redux was not used  
-
-### `backend-logic.md`
-Detailed explanation of:
-
-- How WebSocket rooms are managed  
-- Room registry + Postgres persistence  
-- Code execution safety model  
-- AST-based autocomplete engine  
-- Message broadcasting architecture  
-- Project folder structure (routers/services/models/utils)  
-
-These files serve as deep-dive technical documentation.
 
 ---
 
